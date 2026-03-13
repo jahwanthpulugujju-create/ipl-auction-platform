@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 213 45% 3%;
+    --foreground: 204 82% 95%;
+
+    --card: 213 38% 9%;
+    --card-foreground: 204 82% 95%;
+
+    --popover: 213 38% 9%;
+    --popover-foreground: 204 82% 95%;
+
+    --primary: 191 100% 50%;
+    --primary-foreground: 213 45% 3%;
+
+    --secondary: 25 100% 50%;
+    --secondary-foreground: 213 45% 3%;
+
+    --muted: 213 46% 12%;
+    --muted-foreground: 206 35% 62%;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 213 45% 3%;
+
+    --destructive: 351 100% 57%;
+    --destructive-foreground: 204 82% 95%;
+
+    --emerald: 152 100% 50%;
+    --emerald-foreground: 213 45% 3%;
+
+    --border: 191 100% 50% / 0.08;
+    --input: 191 100% 50% / 0.15;
+    --ring: 191 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 213 38% 5%;
+    --sidebar-foreground: 204 82% 95%;
+    --sidebar-primary: 191 100% 50%;
+    --sidebar-primary-foreground: 213 45% 3%;
+    --sidebar-accent: 213 46% 12%;
+    --sidebar-accent-foreground: 204 82% 95%;
+    --sidebar-border: 191 100% 50% / 0.08;
+    --sidebar-ring: 191 100% 50%;
+
+    --surface: 210 30% 5%;
+    --elevated: 213 46% 12%;
+    --text-muted: 208 30% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(213 45% 3%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(191 100% 50% / 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(191 100% 50% / 0.5);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+  .font-heading {
+    font-family: 'Exo 2', sans-serif;
+  }
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .font-accent {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border;
+  }
+  .glass-strong {
+    @apply bg-card/80 backdrop-blur-2xl border border-border;
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(191 100% 50% / 0.4), 0 0 60px hsl(191 100% 50% / 0.15);
+  }
+  .glow-orange {
+    box-shadow: 0 0 20px hsl(25 100% 50% / 0.5), 0 0 60px hsl(25 100% 50% / 0.2);
+  }
+  .glow-gold {
+    box-shadow: 0 0 30px hsl(51 100% 50% / 0.6);
+  }
+
+  .text-gradient-cyan {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(191,100%,70%)];
+  }
+  .text-gradient-orange {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-[hsl(35,100%,60%)];
+  }
+
+  .grid-dots {
+    background-image: radial-gradient(circle, hsl(191 100% 50% / 0.07) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -50px) scale(1.1); }
+  50% { transform: translate(-20px, -100px) scale(0.9); }
+  75% { transform: translate(50px, -50px) scale(1.05); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes sold-stamp {
+  0% { transform: rotate(-30deg) scale(3); opacity: 0; }
+  50% { transform: rotate(-15deg) scale(1.2); opacity: 0.8; }
+  100% { transform: rotate(-12deg) scale(1); opacity: 1; }
+}
+
+@keyframes bid-flash {
+  0% { background-color: hsl(191 100% 50% / 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spotlight-sweep {
+  0% { transform: rotate(-20deg) translateX(-100%); }
+  100% { transform: rotate(-20deg) translateX(100%); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
